@@ -10,3 +10,5 @@ languages:
 module: Building complete apps
 level: intermediate
 resources: 7
+
+parent_template: git@github.com:learn-co-curriculum/rails-amusement-park.git
