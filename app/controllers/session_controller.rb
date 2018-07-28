@@ -1,5 +1,6 @@
-class SessionController < ApplicationController
+# frozen_string_literal: true
 
+class SessionController < ApplicationController
   def new
     @user = User.new
   end

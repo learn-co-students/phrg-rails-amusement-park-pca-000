@@ -6,9 +6,8 @@ class User < ApplicationRecord
   has_secure_password
 
   def mood
-    if nausea && happiness
-      nausea > happiness ? "sad" : "happy"
-    end
+    return unless nausea && happiness
+    nausea > happiness ? "sad" : "happy"
   end
 
   def user_name=(name)
@@ -18,5 +17,4 @@ class User < ApplicationRecord
   def user_name
     name
   end
-
 end

@@ -1,5 +1,5 @@
-class RidesController < ApplicationController
+# frozen_string_literal: true
 
-  def create
-  end
+class RidesController < ApplicationController
+  def create; end
 end
