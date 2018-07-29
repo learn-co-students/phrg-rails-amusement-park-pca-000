@@ -1,0 +1,15 @@
+<h1>Welcome, <%= @user.name %></h1><br>
+<%=flash[:messages]%>
+
+Mood:
+<%= @user.mood %><br><br>
+Height:
+<%= @user.height %> inches<br><br>
+Tickets:
+<%= @user.tickets %><br><br>
+ADMIN:
+<%=@user.admin_status%><br><br>
+
+<%=link_to "Log Out", :session, method: :delete%><br>
+
+<%= link_to "See attractions", attractions_path %>
