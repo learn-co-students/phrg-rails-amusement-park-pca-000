@@ -65,6 +65,7 @@ RSpec.describe Ride, :type => :model do
   end
 
   it "has a method 'take_ride' that updates ticket number" do
+    # debugger
     user.update(:tickets => 10)
     ride = Ride.create(:user_id => user.id, :attraction_id => attraction.id)
     ride.take_ride
