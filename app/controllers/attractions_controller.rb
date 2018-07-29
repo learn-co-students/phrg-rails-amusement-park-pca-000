@@ -12,15 +12,13 @@ class AttractionsController < ApplicationController
     # binding.pry
     @user = current_user
     @attraction = Attraction.find_by(id: params[:id])
-
   end
 
   def new
     @attraction = Attraction.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     attraction = Attraction.new(attraction_params)
@@ -52,6 +50,10 @@ private
   end
 
   def attraction_params
-    params.require(:attraction).permit(:name, :tickets, :nausea_rating, :happiness_rating, :min_height)
+    params.require(:attraction).permit(:name,
+                                       :tickets,
+                                       :nausea_rating,
+                                       :happiness_rating,
+                                       :min_height)
   end
 end
