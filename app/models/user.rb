@@ -6,10 +6,7 @@ class User < ApplicationRecord
   has_many :attractions, through: :rides
 
   def mood
-    if nausea > happiness && nausea != happiness
-      "sad"
-    elsif nausea < happiness && nausea != happiness
-      "happy"
-    end
+    return unless nausea && happiness
+    nausea > happiness ? "sad" : "happy"
   end
 end
