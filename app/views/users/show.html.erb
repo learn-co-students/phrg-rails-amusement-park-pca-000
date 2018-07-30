@@ -1,4 +1,7 @@
 <div>
+  <% if @user.admin == true %>
+    <%= "ADMIN" %>
+  <% end %>
   <label>Name:</label> <%= @user.name %>
   <br>
   <label>Tickets: </label> <%= @user.tickets %>
