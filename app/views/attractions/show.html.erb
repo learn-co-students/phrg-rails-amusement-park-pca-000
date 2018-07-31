@@ -1,0 +1,7 @@
+<h1><%= @attraction.name %></h1>
+
+<%= button_to "Go on this ride", ride_path(@ride), method: :patch %>
+
+<% if @user.admin == true %>
+  <%= link_to "Edit Attraction", edit_attraction_path(@attraction) %>
+<% end %>
