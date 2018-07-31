@@ -13,6 +13,7 @@ class Ride < ActiveRecord::Base
       tickets_denied
     else
       ride_the_ride
+      thank_you
     end
   end
 
@@ -39,5 +40,9 @@ private
     user.nausea += attraction.nausea_rating
     user.happiness += attraction.happiness_rating
     user.save
+  end
+
+  def thank_you
+    "Thanks for riding the #{attraction.name}!"
   end
 end

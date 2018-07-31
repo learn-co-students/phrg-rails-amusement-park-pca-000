@@ -12,8 +12,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    @message = params[:message] if params[:message]
+    @message ||= false
+
     if session[:user_id]
       @user = User.find_by(id: params[:id])
+      if params[:ride_id]
+        @ride = Ride.find_by_id(params[:ride_id])
+        @user = @ride.user
+      end
     else
       redirect_to "/"
     end
