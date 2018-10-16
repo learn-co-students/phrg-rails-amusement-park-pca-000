@@ -21,4 +21,7 @@ You're going to be building an amusement park. There will be users, attractions,
 * [Sessions in Rails](http://guides.rubyonrails.org/security.html#sessions)
 * [`has_secure_password`](http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html)
 
+## Does this need an update?
+ Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-rails-amusement-park/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-rails-amusement-park/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
+ 
 <p data-visibility='hidden'>PHRG Rails Amusement Park</p>
