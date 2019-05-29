@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class Attraction < ApplicationRecord
+class Attraction < ActiveRecord::Base
+  has_many :rides
+  has_many :users, through: :rides
 end
