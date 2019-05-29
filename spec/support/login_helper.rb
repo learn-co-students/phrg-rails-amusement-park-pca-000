@@ -7,11 +7,12 @@ module LoginHelper
     fill_in("user[nausea]", :with => "2")
     fill_in("user[tickets]", :with => "15")
     fill_in("user[password]", :with => "password")
+    fill_in("user[password_confirmation]", :with => "password")
     click_button('Create User')
   end
 
   def user_login
-    select 'Mindy',from:'user_name'
+    select 'Mindy', from: 'user_id' # we changed to id, because that is what it should be passing as a value.  Ids are unique. Names are NOT unique.
     fill_in("password", :with => "password")
     click_button('Sign In')
   end
@@ -19,17 +20,18 @@ module LoginHelper
   def admin_signup
     fill_in("user[name]", :with => "Walt Disney")
     fill_in("user[password]", :with => "password")
+    fill_in("user[password_confirmation]", :with => "password")
     find(:css, "#user_admin").set(true)
     click_button('Create User')
   end
 
   def admin_login
-    select 'Walt Disney',from:'user_name'
+    select 'Walt Disney', from: 'user_id' # this should likely also be changed to id
     fill_in("password", :with => "password")
     click_button('Sign In')
   end
 
-  def create_standard_user 
+  def create_standard_user
     @mindy = User.create(
       name: "Mindy",
       password: "password",
@@ -55,5 +57,5 @@ module LoginHelper
       admin: true
     )
   end
-  
+
 end

@@ -1,0 +1,20 @@
+<h1>Amusement Park User Information</h1>
+<br>
+
+<% if @ride %>
+  <%= flash[:notice] %>
+<% end %>
+
+<h3>Name: <%= @user.name %></h3>
+Happiness: <%= @user.happiness %>
+<% unless @user.happiness.nil? || @user.nausea.nil? %>
+  Mood: <%= @user.mood %>
+<% end %>
+Tickets: <%= @user.tickets %>
+Height: <%= @user.height %>
+Nausea: <%= @user.nausea %>
+ADMIN: <%= @user.admin %>
+
+<h2>Links:</h2>
+<%= link_to "See attractions", attractions_path %>
+<%= link_to "Log Out", session_path, method: :delete %>
