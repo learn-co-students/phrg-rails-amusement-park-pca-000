@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rides
   get '/users/new', to: 'users#new', as: 'new_user'
   root 'static_pages#home'
   get '/users', to:'users#index', as: 'users'
@@ -14,5 +15,4 @@ Rails.application.routes.draw do
   get '/attractions/:id/edit', to: 'attractions#edit', as: 'edit_attraction'
   patch '/attractions/:id', to: 'attractions#update'
   post '/attractions', to: 'attractions#create'
-  post '/rides', to:"rides#create", as: 'rides'
 end
