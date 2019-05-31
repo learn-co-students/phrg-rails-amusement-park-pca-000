@@ -12,7 +12,7 @@ class SessionController < ApplicationController
   end
 
   def destroy
-    session.delete :user_id if session[:user_id]
+    session.delete :user_id if logged_in?
     redirect_to "/"
   end
 end

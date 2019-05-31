@@ -3,7 +3,7 @@
 class AttractionsController < ApplicationController
   def index
     @attractions = Attraction.all
-    @user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(logged_in?)
   end
 
   def new
@@ -17,7 +17,7 @@ class AttractionsController < ApplicationController
 
   def show
     @attraction = Attraction.find_by_id(params[:id])
-    @user = User.find_by_id(session[:user_id])
+    @user = User.find_by_id(logged_in?)
     @ride = Ride.create(user_id: @user.id, attraction_id: @attraction.id)
   end
 
