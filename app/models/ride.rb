@@ -5,52 +5,54 @@ class Ride < ActiveRecord::Base
   belongs_to :attraction
 
   def take_ride
-    @user = self.user
-    @attraction = self.attraction
-    if !!requirements
-      ride
+    if too_poor
+      too_poor_prompt
+    elsif too_short
+      too_short_prompt
+    elsif too_poor_and_too_short
+      too_poor_and_too_short_prompt
     else
-      requirement_problem
+      good_to_go
+      good_to_go_prompt
     end
   end
 
-  def ride
-    new_happiness = @user.happiness + @attraction.happiness_rating
-    new_nausea = @user.nausea + @attraction.nausea_rating
-    new_tickets =  @user.tickets - @attraction.tickets
-    @user.update(
-      :happiness => new_happiness,
-      :nausea => new_nausea,
-      :tickets => new_tickets
-    )
-    "Thanks for riding the #{@attraction.name}!"
+private
+
+  def too_poor
+    user.tickets < attraction.tickets && user.height > attraction.min_height
   end
 
-
-  def requirements
-    @user.height >= @attraction.min_height && @user.tickets >= @attraction.tickets
+  def too_poor_prompt
+    "Sorry. You do not have enough tickets to ride the #{attraction.name}."
   end
 
-  def requirement_problem
-    if @user.height < @attraction.min_height && @user.tickets < @attraction.tickets
-      sorry + not_enough_tickets + " " + not_tall_enough
-    elsif @user.height < @attraction.min_height
-      sorry + not_tall_enough
-    elsif @user.tickets < @attraction.tickets
-      sorry + not_enough_tickets
-    end
+  def too_short
+    user.tickets > attraction.tickets && user.height < attraction.min_height
   end
 
-  def sorry
-    "Sorry. "
+  def too_short_prompt
+    "Sorry. You are not tall enough to ride the #{attraction.name}."
   end
 
-  def not_enough_tickets
-    "You do not have enough tickets to ride the " + attraction.name + "."
+  def too_poor_and_too_short
+    user.tickets < attraction.tickets && user.height < attraction.min_height
   end
 
-  def not_tall_enough
-    "You are not tall enough to ride the " + attraction.name + "."
+  def too_poor_and_too_short_prompt
+    "Sorry. You do not have enough tickets to ride the " \
+    "#{attraction.name}. You are not tall enough to ride " \
+    "the #{attraction.name}."
   end
 
+  def good_to_go
+    user.tickets -= attraction.tickets
+    user.nausea += attraction.nausea_rating
+    user.happiness += attraction.happiness_rating
+    user.save
+  end
+
+  def good_to_go_prompt
+    "Thanks for riding the #{attraction.name}!"
+  end
 end

@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class RidesController < ApplicationController
+  def create; end
 
-  def new
-    @ride = Ride.create(
-      :user_id => params[:user_id],
-      :attraction_id => params[:attraction_id]
-    )
-    @message = @ride.take_ride
-    redirect_to user_path(@ride.user, :message => @message)
+  def update
+    @ride = Ride.find_by(id: params[:id])
+    @user = User.find_by(id: @ride.user_id)
+    redirect_to "/" if @user.id != session[:user_id]
+    message = @ride.take_ride
+    redirect_to user_path(@user), flash: { notice: message }
   end
-
 end
