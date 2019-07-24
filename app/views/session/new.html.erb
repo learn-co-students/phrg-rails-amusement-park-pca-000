@@ -1,0 +1,7 @@
+<h1>Welcome! Please log in:</h1>
+
+<%= form_tag ({controller: 'session', action: 'create', method: 'post'}) do %>
+  <%= select_tag "user_name", options_from_collection_for_select(@users, "id", "name") %>
+  <%= text_field_tag "password" %>
+  <input type=submit value='Sign In'>
+<% end %>
