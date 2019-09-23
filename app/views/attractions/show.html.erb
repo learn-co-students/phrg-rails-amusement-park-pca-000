@@ -1,0 +1,10 @@
+<% if @user.admin == false %>
+<form method="POST" action="/users/<%= @user.id %>">
+    <input type="hidden" id="ride_id" name="ride_id" value= "<%= @ride.id %>">
+    <button type="submit">Go on this ride</button>
+</form>
+<% end %>
+<%= @attraction.name %>
+<% if @user.admin == true %>
+<%= link_to "Edit Attraction", edit_attraction_path(@attraction) %>
+<% end %>
